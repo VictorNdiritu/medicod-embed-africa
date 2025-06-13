@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { 
   Shield, 
   Zap, 
@@ -25,26 +27,30 @@ import {
 } from "lucide-react";
 
 const Index = () => {
+  const [showWaitlist, setShowWaitlist] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="bg-card border-b border-border sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <img 
-                src="/lovable-uploads/a34ed8e2-8a17-4e05-a3bb-c6c7b0b821f5.png" 
-                alt="MediCod Logo" 
-                className="h-8 w-8 rounded"
-              />
-              <span className="text-xl font-bold text-foreground">MediCod</span>
-            </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#industries" className="text-muted-foreground hover:text-foreground">Industries</a>
-              <a href="#how-it-works" className="text-muted-foreground hover:text-foreground">How It Works</a>
-              <a href="#products" className="text-muted-foreground hover:text-foreground">Products</a>
-              <a href="#partners" className="text-muted-foreground hover:text-foreground">Partners</a>
-              <Button>Get API Access</Button>
+          <div className="flex justify-center items-center h-16">
+            <div className="flex justify-between items-center w-full max-w-4xl">
+              <div className="flex items-center space-x-3">
+                <img 
+                  src="/lovable-uploads/a34ed8e2-8a17-4e05-a3bb-c6c7b0b821f5.png" 
+                  alt="MediCod Logo" 
+                  className="h-8 w-8 rounded"
+                />
+                <span className="text-xl font-bold text-foreground">MediCod</span>
+              </div>
+              <div className="hidden md:flex items-center space-x-8">
+                <a href="#industries" className="text-muted-foreground hover:text-foreground">Industries</a>
+                <a href="#how-it-works" className="text-muted-foreground hover:text-foreground">How It Works</a>
+                <a href="#products" className="text-muted-foreground hover:text-foreground">Products</a>
+                <a href="#partners" className="text-muted-foreground hover:text-foreground">Partners</a>
+                <Button onClick={() => setShowWaitlist(true)}>Join the Waitlist</Button>
+              </div>
             </div>
           </div>
         </div>
@@ -64,8 +70,8 @@ const Index = () => {
             turning insurance into a seamless feature rather than a separate process.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-8">
-              Get API Access
+            <Button size="lg" className="text-lg px-8" onClick={() => setShowWaitlist(true)}>
+              Join the Waitlist
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button variant="outline" size="lg" className="text-lg px-8">
@@ -276,8 +282,8 @@ const Index = () => {
             Join forward-thinking platforms already using our APIs to offer seamless insurance experiences
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="text-lg px-8">
-              Get API Access
+            <Button size="lg" variant="secondary" className="text-lg px-8" onClick={() => setShowWaitlist(true)}>
+              Join the Waitlist
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
               Book a Demo
@@ -345,11 +351,11 @@ const Index = () => {
             <div className="flex items-center space-x-6 text-muted-foreground">
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <span>hello@medicod.tech</span>
+                <span>hi@medicodinsurance.tech</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
-                <span>+254 7XX XXX XXX</span>
+                <span>+254706906363</span>
               </div>
             </div>
           </div>
@@ -358,6 +364,37 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {/* Waitlist Dialog */}
+      <Dialog open={showWaitlist} onOpenChange={setShowWaitlist}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Join the Waitlist</DialogTitle>
+          </DialogHeader>
+          <form className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">Company Name</label>
+              <Input placeholder="Your company name" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+              <Input type="email" placeholder="your@email.com" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">Industry</label>
+              <Input placeholder="E.g. Fintech, Logistics, etc." />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">Tell us about your use case</label>
+              <Textarea placeholder="How would you use embedded insurance?" rows={3} />
+            </div>
+            <Button type="submit" className="w-full">
+              Join Waitlist
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
