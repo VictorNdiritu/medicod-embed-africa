@@ -34,23 +34,21 @@ const Index = () => {
       {/* Navigation */}
       <nav className="bg-card border-b border-border sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center items-center h-16">
-            <div className="flex justify-between items-center w-full max-w-4xl">
-              <div className="flex items-center space-x-3">
-                <img 
-                  src="/lovable-uploads/a34ed8e2-8a17-4e05-a3bb-c6c7b0b821f5.png" 
-                  alt="MediCod Logo" 
-                  className="h-8 w-8 rounded"
-                />
-                <span className="text-xl font-bold text-foreground">MediCod</span>
-              </div>
-              <div className="hidden md:flex items-center space-x-8">
-                <a href="#industries" className="text-muted-foreground hover:text-foreground">Industries</a>
-                <a href="#how-it-works" className="text-muted-foreground hover:text-foreground">How It Works</a>
-                <a href="#products" className="text-muted-foreground hover:text-foreground">Products</a>
-                <a href="#partners" className="text-muted-foreground hover:text-foreground">Partners</a>
-                <Button onClick={() => setShowWaitlist(true)}>Join the Waitlist</Button>
-              </div>
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-3">
+              <img 
+                src="/lovable-uploads/a34ed8e2-8a17-4e05-a3bb-c6c7b0b821f5.png" 
+                alt="MediCod Logo" 
+                className="h-8 w-8 rounded"
+              />
+              <span className="text-xl font-bold text-foreground">MediCod</span>
+            </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#industries" className="text-muted-foreground hover:text-foreground">Industries</a>
+              <a href="#how-it-works" className="text-muted-foreground hover:text-foreground">How It Works</a>
+              <a href="#products" className="text-muted-foreground hover:text-foreground">Products</a>
+              <a href="#partners" className="text-muted-foreground hover:text-foreground">Partners</a>
+              <Button onClick={() => setShowWaitlist(true)}>Join the Waitlist</Button>
             </div>
           </div>
         </div>
