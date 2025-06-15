@@ -4,6 +4,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 import { 
   Shield, 
   Zap, 
@@ -27,8 +33,65 @@ import {
   Smartphone
 } from "lucide-react";
 
+const waitlistSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
+  company: z.string().min(0).optional(),
+  interest: z.string().min(0).optional(),
+});
+
+type WaitlistForm = z.infer<typeof waitlistSchema>;
+
 const Index = () => {
   const [showWaitlist, setShowWaitlist] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const form = useForm<WaitlistForm>({
+    resolver: zodResolver(waitlistSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      company: "",
+      interest: "",
+    },
+  });
+
+  const onSubmit = async (values: WaitlistForm) => {
+    setIsSubmitting(true);
+    try {
+      // Transform data to match database requirements
+      const submitData = {
+        name: values.name,
+        email: values.email,
+        company: values.company || null,
+        interest: values.interest || null,
+      };
+
+      const { error } = await supabase
+        .from('waitlist')
+        .insert([submitData]);
+
+      if (error) throw error;
+
+      toast({
+        title: "Success!",
+        description: "You've been added to the waitlist. We'll be in touch soon!",
+      });
+      
+      form.reset();
+      setShowWaitlist(false);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const industries = [
     { icon: Briefcase, title: "Jobtech", subtitle: "Freelance & Gig Platforms" },
@@ -317,28 +380,66 @@ const Index = () => {
           <DialogHeader>
             <DialogTitle className="text-xl font-bold text-black">Join the Waitlist</DialogTitle>
           </DialogHeader>
-          <form className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-black mb-2">Name</label>
-              <Input placeholder="Your full name" className="h-11" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-black mb-2">Email</label>
-              <Input type="email" placeholder="your@email.com" className="h-11" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-black mb-2">Company</label>
-              <Input placeholder="Your company name" className="h-11" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-black mb-2">Interest</label>
-              <Textarea placeholder="How would you use embedded insurance?" rows={3} />
-            </div>
-            <Button type="submit" className="w-full h-11 font-medium">
-              Join Waitlist
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </form>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-black">Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Your full name" className="h-11" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-black">Email</FormLabel>
+                    <FormControl>
+                      <Input type="email" placeholder="your@email.com" className="h-11" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="company"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-black">Company</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Your company name" className="h-11" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="interest"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-black">Interest</FormLabel>
+                    <FormControl>
+                      <Textarea placeholder="How would you use embedded insurance?" rows={3} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full h-11 font-medium" disabled={isSubmitting}>
+                {isSubmitting ? "Joining..." : "Join Waitlist"}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </form>
+          </Form>
         </DialogContent>
       </Dialog>
     </div>
