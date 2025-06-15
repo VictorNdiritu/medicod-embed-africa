@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { 
   Shield, 
   Zap, 
@@ -13,17 +12,11 @@ import {
   Truck, 
   CreditCard, 
   Heart, 
-  Plane, 
-  GraduationCap,
-  Building,
-  Phone,
-  Mail,
-  Globe,
-  CheckCircle,
   ArrowRight,
-  Clock,
   Lock,
-  Layers
+  CheckCircle,
+  Mail,
+  Phone
 } from "lucide-react";
 
 const Index = () => {
@@ -32,135 +25,95 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="bg-card border-b border-border sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center h-16 relative">
-            <div className="flex items-center space-x-3">
+      <nav className="bg-background/95 backdrop-blur-md border-b border-border/40 sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center justify-between h-20">
+            <div className="flex items-center space-x-4">
               <img 
                 src="/lovable-uploads/a34ed8e2-8a17-4e05-a3bb-c6c7b0b821f5.png" 
                 alt="MediCod Logo" 
-                className="h-8 w-8 rounded"
+                className="h-12 w-12 rounded-xl shadow-md"
               />
-              <span className="text-xl font-bold text-foreground">MediCod</span>
+              <div>
+                <span className="text-2xl font-bold text-foreground">MediCod</span>
+                <p className="text-sm text-muted-foreground">Insurance APIs</p>
+              </div>
             </div>
-            <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
-              <a href="#industries" className="text-foreground hover:text-primary">Industries</a>
-              <a href="#how-it-works" className="text-foreground hover:text-primary">How It Works</a>
-              <a href="#products" className="text-foreground hover:text-primary">Products</a>
-              <a href="#partners" className="text-foreground hover:text-primary">Partners</a>
-              <Button onClick={() => setShowWaitlist(true)}>Join the Waitlist</Button>
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors font-medium">How It Works</a>
+              <a href="#products" className="text-muted-foreground hover:text-foreground transition-colors font-medium">Products</a>
+              <Button onClick={() => setShowWaitlist(true)} className="px-6 py-2 font-medium">
+                Get Early Access
+              </Button>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <Badge variant="secondary" className="mb-6">
-            Backed by Britam • Microsoft for Startups
-          </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-            Embedded Insurance for Africa's Digital Future
+      <section className="py-32 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center px-4 py-2 bg-muted/50 rounded-full text-sm text-muted-foreground mb-8">
+            <Shield className="w-4 h-4 mr-2" />
+            Backed by Britam & Microsoft for Startups
+          </div>
+          <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 leading-tight">
+            Embedded Insurance
+            <span className="block text-primary">for Digital Platforms</span>
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Developer-friendly APIs that let digital platforms embed insurance products into their user journeys — 
-            turning insurance into a seamless feature rather than a separate process.
+          <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+            Simple APIs that let you embed insurance seamlessly into your platform's user journey. 
+            No complex integrations, just plug and play.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-8" onClick={() => setShowWaitlist(true)}>
-              Join the Waitlist
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8">
-              Book a Demo
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Industries We Serve */}
-      <section id="industries" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Industries We Serve
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We work with platforms and digital businesses across key sectors in Africa
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {[
-              { icon: Users, label: "Jobtech & Gig Platforms" },
-              { icon: Truck, label: "Logistics & Transport" },
-              { icon: CreditCard, label: "Fintech & Lending" },
-              { icon: Heart, label: "Healthtech & Telemedicine" },
-              { icon: Globe, label: "E-commerce & Marketplaces" },
-              { icon: Plane, label: "Travel & Mobility" },
-              { icon: GraduationCap, label: "Edtech Platforms" },
-              { icon: Building, label: "SaaS Tools" },
-              { icon: Code, label: "SMEs & BPOs" }
-            ].map((industry, index) => (
-              <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow">
-                <CardContent className="p-0">
-                  <industry.icon className="h-8 w-8 text-primary mx-auto mb-3" />
-                  <p className="text-sm font-medium text-foreground">{industry.label}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <Button size="lg" className="text-lg px-8 py-4 h-auto" onClick={() => setShowWaitlist(true)}>
+            Get Early Access
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              How It Works
+      <section id="how-it-works" className="py-24 px-6 bg-muted/30">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-foreground mb-4">
+              Three Simple Steps
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Simple API integration in three easy steps
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Get started with embedded insurance in minutes, not months
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center p-6">
-              <CardHeader>
-                <div className="mx-auto bg-primary text-primary-foreground rounded-full w-16 h-16 flex items-center justify-center mb-4">
+            <Card className="text-center p-8 border-none shadow-lg bg-card">
+              <CardContent className="p-0">
+                <div className="mx-auto bg-primary text-primary-foreground rounded-full w-16 h-16 flex items-center justify-center mb-6">
                   <Code className="h-8 w-8" />
                 </div>
-                <CardTitle>1. Integrate Our API</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Quick and easy integration with comprehensive documentation and developer support
+                <h3 className="text-xl font-bold mb-4">1. Integrate API</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Add our lightweight SDK to your platform with just a few lines of code
                 </p>
               </CardContent>
             </Card>
-            <Card className="text-center p-6">
-              <CardHeader>
-                <div className="mx-auto bg-accent text-accent-foreground rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                  <Layers className="h-8 w-8" />
+            <Card className="text-center p-8 border-none shadow-lg bg-card">
+              <CardContent className="p-0">
+                <div className="mx-auto bg-accent text-accent-foreground rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                  <Shield className="h-8 w-8" />
                 </div>
-                <CardTitle>2. Configure Products</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Customize insurance products to match your platform's needs and user journey
+                <h3 className="text-xl font-bold mb-4">2. Configure Products</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Choose from our library of insurance products that fit your users
                 </p>
               </CardContent>
             </Card>
-            <Card className="text-center p-6">
-              <CardHeader>
-                <div className="mx-auto bg-secondary text-secondary-foreground rounded-full w-16 h-16 flex items-center justify-center mb-4">
+            <Card className="text-center p-8 border-none shadow-lg bg-card">
+              <CardContent className="p-0">
+                <div className="mx-auto bg-secondary text-secondary-foreground rounded-full w-16 h-16 flex items-center justify-center mb-6">
                   <Zap className="h-8 w-8" />
                 </div>
-                <CardTitle>3. Go Live</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Launch embedded insurance with real-time policy issuance and claims processing
+                <h3 className="text-xl font-bold mb-4">3. Go Live</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Launch with real-time policy issuance and automated claims processing
                 </p>
               </CardContent>
             </Card>
@@ -168,32 +121,31 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Insurance Products */}
-      <section id="products" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Insurance Products We Offer
+      {/* Products */}
+      <section id="products" className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-foreground mb-4">
+              Insurance Products
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive coverage options designed for the digital economy
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Comprehensive coverage designed for the digital economy
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              "Health and wellness insurance",
-              "Goods-in-transit and cargo insurance",
-              "Micro-life insurance",
-              "Device and equipment cover",
-              "Travel protection",
-              "Occupational injury insurance",
-              "Usage-based insurance",
-              "On-demand insurance"
+              { icon: Heart, title: "Health & Wellness", description: "Medical coverage for gig workers and employees" },
+              { icon: Truck, title: "Cargo & Transit", description: "Goods protection for logistics and delivery platforms" },
+              { icon: Shield, title: "Micro Life Insurance", description: "Affordable life coverage for underserved markets" },
+              { icon: Lock, title: "Device Protection", description: "Equipment and device insurance for tech platforms" },
+              { icon: Users, title: "Liability Coverage", description: "Professional and general liability protection" },
+              { icon: CreditCard, title: "Payment Protection", description: "Transaction and payment security insurance" }
             ].map((product, index) => (
-              <Card key={index} className="p-6">
-                <CardContent className="p-0 flex items-center space-x-3">
-                  <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
-                  <span className="text-foreground font-medium">{product}</span>
+              <Card key={index} className="p-6 border-none shadow-md hover:shadow-lg transition-shadow bg-card">
+                <CardContent className="p-0">
+                  <product.icon className="h-8 w-8 text-primary mb-4" />
+                  <h3 className="text-lg font-semibold mb-2">{product.title}</h3>
+                  <p className="text-muted-foreground text-sm">{product.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -201,164 +153,75 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Key Value Propositions */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+      {/* Why Choose Us */}
+      <section className="py-24 px-6 bg-muted/30">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-foreground mb-4">
               Why Choose MediCod?
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: Zap, title: "Fast Integration", description: "Quick and easy API integration with minimal technical overhead" },
-              { icon: Code, title: "Developer-First", description: "Comprehensive documentation and dedicated developer support" },
-              { icon: Clock, title: "Real-Time Processing", description: "Instant policy issuance and claims processing" },
-              { icon: Lock, title: "Secure & Compliant", description: "Built with security and regulatory compliance in mind" },
-              { icon: Layers, title: "White-Label Ready", description: "Customizable branding options for seamless integration" },
-              { icon: Shield, title: "Trusted Partners", description: "Backed by leading insurance providers and tech accelerators" }
+              { icon: Zap, title: "Fast Integration", description: "Live in 24 hours" },
+              { icon: Code, title: "Developer First", description: "Built for developers" },
+              { icon: Shield, title: "Fully Compliant", description: "Regulated & secure" },
+              { icon: Heart, title: "African Focus", description: "Built for Africa" }
             ].map((feature, index) => (
-              <Card key={index} className="p-6 text-center">
-                <CardHeader>
-                  <feature.icon className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <CardTitle>{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </CardContent>
-              </Card>
+              <div key={index} className="text-center">
+                <feature.icon className="h-12 w-12 text-primary mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                <p className="text-sm text-muted-foreground">{feature.description}</p>
+              </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Partners Section */}
-      <section id="partners" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
-            Backed By Industry Leaders
-          </h2>
-          <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
-            <div className="flex items-center space-x-4">
-              <img 
-                src="/lovable-uploads/d3113bda-b0fb-4a03-be20-9c6f990e12ea.png" 
-                alt="Britam" 
-                className="h-12"
-              />
-              <div className="text-left">
-                <p className="font-semibold text-foreground">Primary Backer</p>
-                <p className="text-sm text-muted-foreground">Kenya's largest insurance provider</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <img 
-                src="/lovable-uploads/cc45edb4-7278-4134-a9a3-3736b42d6238.png" 
-                alt="Microsoft" 
-                className="h-12"
-              />
-              <div className="text-left">
-                <p className="font-semibold text-foreground">Accelerator Program</p>
-                <p className="text-sm text-muted-foreground">Microsoft for Startups</p>
-              </div>
-            </div>
-          </div>
-          <div className="mt-8">
-            <Badge variant="outline" className="text-muted-foreground">
-              Early interest from Old Mutual Insurance
-            </Badge>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground">
+      <section className="py-24 px-6 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Embed Insurance Into Your Platform?
+          <h2 className="text-4xl font-bold mb-6">
+            Ready to Get Started?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Join forward-thinking platforms already using our APIs to offer seamless insurance experiences
+            Join the waitlist for early access to our insurance APIs
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="text-lg px-8" onClick={() => setShowWaitlist(true)}>
-              Join the Waitlist
-            </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-              Book a Demo
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Get In Touch
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Ready to discuss your embedded insurance needs? Let's talk.
-            </p>
-          </div>
-          <Card className="p-8">
-            <form className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Company Name</label>
-                <Input placeholder="Your company name" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Industry</label>
-                <Input placeholder="E.g. Fintech, Logistics, etc." />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Email</label>
-                <Input type="email" placeholder="your@email.com" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Phone</label>
-                <Input placeholder="+254 7XX XXX XXX" />
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-foreground mb-2">Tell us about your use case</label>
-                <Textarea placeholder="Describe how you'd like to integrate insurance into your platform..." rows={4} />
-              </div>
-              <div className="md:col-span-2">
-                <Button type="submit" size="lg" className="w-full">
-                  Talk to Sales
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </div>
-            </form>
-          </Card>
+          <Button size="lg" variant="secondary" className="text-lg px-8 py-4 h-auto" onClick={() => setShowWaitlist(true)}>
+            Get Early Access
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-card border-t border-border py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <footer className="bg-card border-t border-border py-12 px-6">
+        <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-3 mb-4 md:mb-0">
+            <div className="flex items-center space-x-4 mb-6 md:mb-0">
               <img 
                 src="/lovable-uploads/a34ed8e2-8a17-4e05-a3bb-c6c7b0b821f5.png" 
                 alt="MediCod Logo" 
-                className="h-8 w-8 rounded"
+                className="h-10 w-10 rounded-lg"
               />
-              <span className="text-xl font-bold text-foreground">MediCod Insurance Technologies</span>
+              <div>
+                <span className="text-xl font-bold text-foreground">MediCod</span>
+                <p className="text-sm text-muted-foreground">Insurance Technologies</p>
+              </div>
             </div>
-            <div className="flex items-center space-x-6 text-muted-foreground">
+            <div className="flex items-center space-x-8 text-muted-foreground">
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <span>hi@medicodinsurance.tech</span>
+                <span className="text-sm">hi@medicodinsurance.tech</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
-                <span>+254706906363</span>
+                <span className="text-sm">+254706906363</span>
               </div>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-border text-center text-muted-foreground">
-            <p>&copy; 2024 MediCod Insurance Technologies. All rights reserved.</p>
+            <p className="text-sm">&copy; 2024 MediCod Insurance Technologies. All rights reserved.</p>
           </div>
         </div>
       </footer>
@@ -367,28 +230,28 @@ const Index = () => {
       <Dialog open={showWaitlist} onOpenChange={setShowWaitlist}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Join the Waitlist</DialogTitle>
+            <DialogTitle className="text-xl font-bold">Get Early Access</DialogTitle>
           </DialogHeader>
           <form className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">Company Name</label>
-              <Input placeholder="Your company name" />
+              <Input placeholder="Your company name" className="h-11" />
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">Email</label>
-              <Input type="email" placeholder="your@email.com" />
+              <Input type="email" placeholder="your@email.com" className="h-11" />
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">Industry</label>
-              <Input placeholder="E.g. Fintech, Logistics, etc." />
+              <Input placeholder="E.g. Fintech, Logistics, etc." className="h-11" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">Tell us about your use case</label>
+              <label className="block text-sm font-medium text-foreground mb-2">Use Case</label>
               <Textarea placeholder="How would you use embedded insurance?" rows={3} />
             </div>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full h-11 font-medium">
               Join Waitlist
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </form>
         </DialogContent>
