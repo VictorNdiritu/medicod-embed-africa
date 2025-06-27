@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -169,10 +168,7 @@ const Index = () => {
         </div>
         
         <div className="relative max-w-6xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-8">
-            <Star className="h-4 w-4" />
-            Trusted by 50+ African businesses
-          </div>
+          
           
           <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-tight">
             <span className="bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
@@ -201,9 +197,9 @@ const Index = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="text-lg px-8 py-6 h-auto border-2 hover:bg-slate-50"
+              className="text-lg px-8 py-6 h-auto border-2 border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900 hover:border-slate-400 transition-all duration-200"
             >
-              View Demo
+              Request Demo
               <Globe className="ml-2 h-5 w-5" />
             </Button>
           </div>
@@ -364,7 +360,7 @@ const Index = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="text-lg px-8 py-6 h-auto border-2 border-white text-white hover:bg-white/10"
+              className="text-lg px-8 py-6 h-auto border-2 border-white text-white hover:bg-white hover:text-slate-900 transition-all duration-200"
             >
               Schedule Demo
               <Calendar className="ml-2 h-5 w-5" />
@@ -382,7 +378,7 @@ const Index = () => {
               Supported by Kenya's largest insurer and Microsoft's startup program
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-12 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 max-w-3xl mx-auto">
             <div className="flex flex-col items-center text-center group">
               <div className="w-32 h-32 bg-white rounded-3xl shadow-xl flex items-center justify-center mb-6 border border-slate-200 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
                 <img 
@@ -402,7 +398,7 @@ const Index = () => {
             <div className="flex flex-col items-center text-center group">
               <div className="w-32 h-32 bg-white rounded-3xl shadow-xl flex items-center justify-center mb-6 border border-slate-200 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
                 <img 
-                  src="/lovable-uploads/d3113bda-b0fb-4a03-be20-9c6f990e12ea.png" 
+                  src="/lovable-uploads/e047ff08-c67f-413c-aeb1-1050bc55624d.png" 
                   alt="Microsoft Logo" 
                   className="h-12 w-auto"
                 />
@@ -412,18 +408,6 @@ const Index = () => {
               <div className="flex items-center mt-2">
                 <TrendingUp className="h-4 w-4 text-blue-500 mr-1" />
                 <span className="text-sm text-blue-600 font-medium">Growth Partner</span>
-              </div>
-            </div>
-            
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-32 h-32 bg-white rounded-3xl shadow-xl flex items-center justify-center mb-6 border border-slate-200 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
-                <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">OM</div>
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Old Mutual</h3>
-              <p className="text-slate-600 font-medium">Early Interest & Validation</p>
-              <div className="flex items-center mt-2">
-                <CheckCircle className="h-4 w-4 text-teal-500 mr-1" />
-                <span className="text-sm text-teal-600 font-medium">Validated</span>
               </div>
             </div>
           </div>
