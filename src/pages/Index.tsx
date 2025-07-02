@@ -168,8 +168,6 @@ const Index = () => {
         </div>
         
         <div className="relative max-w-6xl mx-auto text-center">
-          
-          
           <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-tight">
             <span className="bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
               Embedded Insurance
@@ -180,9 +178,13 @@ const Index = () => {
             </span>
           </h1>
           
-          <p className="text-xl text-slate-600 mb-12 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
             Developer-friendly APIs that enable digital platforms to offer relevant insurance 
             to their users at the point of service — instantly, securely, and with minimal effort.
+          </p>
+          
+          <p className="text-lg text-slate-500 mb-12 max-w-4xl mx-auto leading-relaxed font-medium">
+            MediCod Insurance Technologies builds AI-powered infrastructure and embeddable APIs to help African insurers and underwriters digitize, launch, and scale products faster.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -197,7 +199,7 @@ const Index = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="text-lg px-8 py-6 h-auto border-2 border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900 hover:border-slate-400 transition-all duration-200"
+              className="text-lg px-8 py-6 h-auto border-2 hover:bg-slate-50"
             >
               Request Demo
               <Globe className="ml-2 h-5 w-5" />
