@@ -382,7 +382,7 @@ const Index = () => {
             <div className="flex flex-col items-center text-center group">
               <div className="w-32 h-32 bg-white rounded-3xl shadow-xl flex items-center justify-center mb-6 border border-slate-200 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
                 <img 
-                  src="/lovable-uploads/cc45edb4-7278-4134-a9a3-3736b42d6238.png" 
+                  src="/lovable-uploads/5c3e9f4f-b62e-47de-8cfe-9829b64272e0.png" 
                   alt="Britam Logo" 
                   className="h-20 w-auto"
                 />
