@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -15,74 +16,60 @@ import {
   Zap, 
   Code, 
   Users, 
-  Truck, 
-  CreditCard, 
-  Heart, 
   ArrowRight,
-  Briefcase,
-  ShoppingCart,
-  Plane,
-  GraduationCap,
-  Building,
-  Phone,
   CheckCircle,
   Clock,
   Globe,
   Mail,
-  Smartphone,
-  Star,
+  Phone,
   TrendingUp,
   Award,
-  Calendar
+  Layers,
+  Target,
+  Settings,
+  BarChart3
 } from "lucide-react";
 
-const waitlistSchema = z.object({
+const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email address"),
-  company: z.string().min(0).optional(),
-  interest: z.string().min(0).optional(),
+  company: z.string().min(1, "Company is required"),
+  message: z.string().min(10, "Please provide more details about your needs"),
 });
 
-type WaitlistForm = z.infer<typeof waitlistSchema>;
+type ContactForm = z.infer<typeof contactSchema>;
 
 const Index = () => {
-  const [showWaitlist, setShowWaitlist] = useState(false);
+  const [showContact, setShowContact] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const form = useForm<WaitlistForm>({
-    resolver: zodResolver(waitlistSchema),
+  const form = useForm<ContactForm>({
+    resolver: zodResolver(contactSchema),
     defaultValues: {
       name: "",
       email: "",
       company: "",
-      interest: "",
+      message: "",
     },
   });
 
-  const onSubmit = async (values: WaitlistForm) => {
+  const onSubmit = async (values: ContactForm) => {
     setIsSubmitting(true);
     try {
-      const submitData = {
-        name: values.name,
-        email: values.email,
-        company: values.company || null,
-        interest: values.interest || null,
-      };
-
       const { error } = await supabase
-        .from('waitlist')
-        .insert([submitData]);
+        .from('contact_submissions')
+        .insert([values]);
 
       if (error) throw error;
 
       toast({
-        title: "Success!",
-        description: "You've been added to the waitlist. We'll be in touch soon!",
+        title: "Message sent!",
+        description: "We'll get back to you within 24 hours.",
       });
       
       form.reset();
-      setShowWaitlist(false);
+      setShowContact(false);
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
@@ -94,38 +81,6 @@ const Index = () => {
       setIsSubmitting(false);
     }
   };
-
-  const industries = [
-    { icon: Briefcase, title: "Jobtech", subtitle: "Freelance & Gig Platforms", color: "from-blue-500 to-cyan-500" },
-    { icon: Truck, title: "Logistics", subtitle: "Transport & Delivery", color: "from-green-500 to-emerald-500" },
-    { icon: CreditCard, title: "Fintech", subtitle: "Lending & Payments", color: "from-yellow-500 to-orange-500" },
-    { icon: Heart, title: "Healthtech", subtitle: "Telemedicine", color: "from-red-500 to-pink-500" },
-    { icon: ShoppingCart, title: "E-commerce", subtitle: "Marketplaces", color: "from-purple-500 to-violet-500" },
-    { icon: Plane, title: "Travel", subtitle: "Mobility Solutions", color: "from-indigo-500 to-blue-500" },
-    { icon: GraduationCap, title: "Edtech", subtitle: "Learning Platforms", color: "from-teal-500 to-cyan-500" },
-    { icon: Building, title: "SaaS Tools", subtitle: "HR, CRM, ERP", color: "from-gray-600 to-slate-600" },
-    { icon: Users, title: "SMEs & BPOs", subtitle: "Business Operations", color: "from-rose-500 to-pink-500" }
-  ];
-
-  const products = [
-    { icon: Heart, title: "Health & Wellness Insurance", color: "bg-red-50 text-red-600 border-red-200" },
-    { icon: Truck, title: "Goods-in-Transit / Cargo Cover", color: "bg-green-50 text-green-600 border-green-200" },
-    { icon: Shield, title: "Micro-Life Insurance", color: "bg-blue-50 text-blue-600 border-blue-200" },
-    { icon: Smartphone, title: "Device/Equipment Cover", color: "bg-purple-50 text-purple-600 border-purple-200" },
-    { icon: Plane, title: "Travel Protection", color: "bg-indigo-50 text-indigo-600 border-indigo-200" },
-    { icon: Users, title: "Occupational Injury Cover", color: "bg-orange-50 text-orange-600 border-orange-200" },
-    { icon: Clock, title: "On-Demand Insurance", color: "bg-teal-50 text-teal-600 border-teal-200" },
-    { icon: Zap, title: "Usage-Based Coverage", color: "bg-yellow-50 text-yellow-600 border-yellow-200" }
-  ];
-
-  const valueProps = [
-    { icon: Zap, title: "Lightning Fast", description: "Get live in hours, not months", color: "text-yellow-500" },
-    { icon: Clock, title: "Real-Time", description: "Instant issuance and claims", color: "text-blue-500" },
-    { icon: Code, title: "Developer First", description: "Built for seamless integration", color: "text-green-500" },
-    { icon: Globe, title: "Scalable", description: "Cloud-native and compliant", color: "text-purple-500" },
-    { icon: Shield, title: "Compliant", description: "Regulatory requirements handled", color: "text-red-500" },
-    { icon: CheckCircle, title: "White-Label", description: "Your brand, our technology", color: "text-indigo-500" }
-  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -148,11 +103,11 @@ const Index = () => {
               </div>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#industries" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Industries</a>
-              <a href="#how-it-works" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">How It Works</a>
-              <a href="#products" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Products</a>
-              <Button onClick={() => setShowWaitlist(true)} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25 px-6">
-                Join Waitlist
+              <a href="#underwriters" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">For Underwriters</a>
+              <a href="#distribution" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Distribution</a>
+              <a href="#infrastructure" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Infrastructure</a>
+              <Button onClick={() => setShowContact(true)} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25 px-6">
+                Partner with us
               </Button>
             </div>
           </div>
@@ -170,39 +125,26 @@ const Index = () => {
         <div className="relative max-w-6xl mx-auto text-center">
           <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-tight">
             <span className="bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
-              Embedded Insurance
+              Your policies. One API.
             </span>
             <br />
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              for Africa's Digital Future
+              Unlimited reach.
             </span>
           </h1>
           
-          <p className="text-xl text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Developer-friendly APIs that enable digital platforms to offer relevant insurance 
-            to their users at the point of service — instantly, securely, and with minimal effort.
+          <p className="text-xl text-slate-600 mb-12 max-w-4xl mx-auto leading-relaxed">
+            PoliPort by Medicod Insurance Technologies helps insurers launch their products across digital platforms — fast. Expand your distribution, simplify integration, and unlock new customer touchpoints.
           </p>
           
-          <p className="text-lg text-slate-500 mb-12 max-w-4xl mx-auto leading-relaxed font-medium">
-            MediCod Insurance Technologies builds AI-powered infrastructure and embeddable APIs to help African insurers and underwriters digitize, launch, and scale products faster.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex justify-center">
             <Button 
               size="lg" 
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-6 h-auto shadow-2xl shadow-blue-500/25 transform hover:scale-105 transition-all duration-200" 
-              onClick={() => setShowWaitlist(true)}
+              onClick={() => setShowContact(true)}
             >
-              Join the Waitlist
+              Partner with us
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="text-lg px-8 py-6 h-auto border-2 hover:bg-slate-50"
-            >
-              Request Demo
-              <Globe className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>
@@ -213,8 +155,8 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">50+</div>
-              <div className="text-slate-600">Digital Platforms</div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">One</div>
+              <div className="text-slate-600">API Connection</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-purple-600 mb-2">99.9%</div>
@@ -222,7 +164,7 @@ const Index = () => {
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-green-600 mb-2">&lt;2s</div>
-              <div className="text-slate-600">API Response Time</div>
+              <div className="text-slate-600">Response Time</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-orange-600 mb-2">24/7</div>
@@ -232,147 +174,184 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Industries We Serve */}
-      <section id="industries" className="py-24 px-6 bg-gradient-to-br from-slate-50 to-blue-50">
+      {/* For Underwriters Section */}
+      <section id="underwriters" className="py-24 px-6 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">Industries We Serve</h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Plug-and-play insurance solutions tailored for Africa's growing digital economy
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">Built for Underwriters</h2>
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto mb-6">
+              With PoliPort, you don't need to rebuild your systems to go digital. Keep control of your products, gain access to real-time distribution data, and open new channels — from apps to partner portals — all through one modern interface.
+            </p>
+            <p className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              You stay in control. We handle the tech.
             </p>
           </div>
+          
           <div className="grid md:grid-cols-3 gap-8">
-            {industries.map((industry, index) => (
-              <Card key={index} className="group p-8 text-center hover:shadow-2xl transition-all duration-300 border-0 bg-white/70 backdrop-blur-sm hover:bg-white transform hover:-translate-y-2">
-                <CardContent className="p-0">
-                  <div className={`h-16 w-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br ${industry.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    <industry.icon className="h-8 w-8 text-white" />
+            <Card className="p-8 text-center hover:shadow-2xl transition-all duration-300 border-0 bg-white/70 backdrop-blur-sm hover:bg-white transform hover:-translate-y-2">
+              <CardContent className="p-0">
+                <div className="h-16 w-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg">
+                  <Shield className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Full Control</h3>
+                <p className="text-slate-600">Maintain complete oversight of your products and pricing while expanding reach</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="p-8 text-center hover:shadow-2xl transition-all duration-300 border-0 bg-white/70 backdrop-blur-sm hover:bg-white transform hover:-translate-y-2">
+              <CardContent className="p-0">
+                <div className="h-16 w-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center shadow-lg">
+                  <BarChart3 className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Real-time Data</h3>
+                <p className="text-slate-600">Access comprehensive distribution analytics and customer insights instantly</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="p-8 text-center hover:shadow-2xl transition-all duration-300 border-0 bg-white/70 backdrop-blur-sm hover:bg-white transform hover:-translate-y-2">
+              <CardContent className="p-0">
+                <div className="h-16 w-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center shadow-lg">
+                  <Settings className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">No System Rebuild</h3>
+                <p className="text-slate-600">Integrate seamlessly with your existing infrastructure and workflows</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Distribution Layer Section */}
+      <section id="distribution" className="py-24 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-purple-900 bg-clip-text text-transparent mb-6">Embedded Anywhere</h2>
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto">
+              Whether it's a partner app, a broker portal, or a digital marketplace, PoliPort lets your policies live where your customers already are. One connection — endless opportunities.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Globe className="h-6 w-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{industry.title}</h3>
-                  <p className="text-slate-600">{industry.subtitle}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section id="how-it-works" className="py-24 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-purple-900 bg-clip-text text-transparent mb-6">How It Works</h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Simple 3-step integration gets you live in hours, not months
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { icon: Code, title: "Integrate API", description: "Add our developer-friendly SDK with just a few lines of code", color: "from-blue-500 to-cyan-500" },
-              { icon: Shield, title: "Configure Products", description: "Choose relevant insurance products for your users", color: "from-purple-500 to-pink-500" },
-              { icon: Zap, title: "Go Live", description: "Launch with real-time policy issuance and automated claims", color: "from-green-500 to-teal-500" }
-            ].map((step, index) => (
-              <Card key={index} className="relative p-8 text-center border-0 shadow-xl bg-gradient-to-br from-white to-slate-50 overflow-hidden group hover:shadow-2xl transition-all duration-300">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
-                <CardContent className="p-0">
-                  <div className="relative mb-6">
-                    <div className={`mx-auto bg-gradient-to-br ${step.color} text-white rounded-2xl w-20 h-20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <step.icon className="h-10 w-10" />
-                    </div>
-                    <div className="absolute -top-2 -right-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
-                      {index + 1}
-                    </div>
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">{step.title}</h3>
-                  <p className="text-slate-600 leading-relaxed">{step.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Insurance Products */}
-      <section id="products" className="py-24 px-6 bg-gradient-to-br from-blue-50 to-purple-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">Insurance Products</h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Comprehensive coverage designed for Africa's digital platforms
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.map((product, index) => (
-              <Card key={index} className={`p-6 text-center hover:shadow-xl transition-all duration-300 border-2 ${product.color} hover:scale-105 transform`}>
-                <CardContent className="p-0">
-                  <product.icon className="h-10 w-10 mx-auto mb-4" />
-                  <h3 className="text-sm font-bold">{product.title}</h3>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Value Propositions */}
-      <section className="py-24 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-purple-900 bg-clip-text text-transparent mb-6">Why Choose MediCod?</h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              API-first insurance platform built for modern digital businesses
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {valueProps.map((prop, index) => (
-              <div key={index} className="text-center group">
-                <div className="mb-6 relative">
-                  <div className="w-16 h-16 mx-auto bg-gradient-to-br from-white to-slate-100 rounded-2xl shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300">
-                    <prop.icon className={`h-8 w-8 ${prop.color} group-hover:scale-110 transition-transform duration-300`} />
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">Digital Marketplaces</h3>
+                    <p className="text-slate-600">Reach customers through e-commerce platforms and digital marketplaces</p>
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{prop.title}</h3>
-                <p className="text-slate-600">{prop.description}</p>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Users className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">Partner Applications</h3>
+                    <p className="text-slate-600">Embed directly into partner apps and platforms your customers use daily</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Target className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">Broker Portals</h3>
+                    <p className="text-slate-600">Enable brokers with seamless access to your products and pricing</p>
+                  </div>
+                </div>
               </div>
-            ))}
+            </div>
+            
+            <div className="relative">
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 shadow-2xl">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white rounded-xl p-4 shadow-lg">
+                    <div className="w-8 h-8 bg-blue-500 rounded-lg mb-2"></div>
+                    <div className="h-2 bg-slate-200 rounded mb-2"></div>
+                    <div className="h-2 bg-slate-200 rounded w-3/4"></div>
+                  </div>
+                  <div className="bg-white rounded-xl p-4 shadow-lg">
+                    <div className="w-8 h-8 bg-purple-500 rounded-lg mb-2"></div>
+                    <div className="h-2 bg-slate-200 rounded mb-2"></div>
+                    <div className="h-2 bg-slate-200 rounded w-2/3"></div>
+                  </div>
+                  <div className="bg-white rounded-xl p-4 shadow-lg">
+                    <div className="w-8 h-8 bg-green-500 rounded-lg mb-2"></div>
+                    <div className="h-2 bg-slate-200 rounded mb-2"></div>
+                    <div className="h-2 bg-slate-200 rounded w-4/5"></div>
+                  </div>
+                  <div className="bg-white rounded-xl p-4 shadow-lg">
+                    <div className="w-8 h-8 bg-orange-500 rounded-lg mb-2"></div>
+                    <div className="h-2 bg-slate-200 rounded mb-2"></div>
+                    <div className="h-2 bg-slate-200 rounded w-1/2"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 px-6 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-full h-full opacity-20"></div>
-        </div>
-        <div className="relative max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl font-bold mb-8">Ready to Transform Your Platform?</h2>
-          <p className="text-xl mb-12 opacity-90 max-w-2xl mx-auto">
-            Join the waitlist for early access to our insurance APIs and be part of Africa's insurance revolution
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              size="lg" 
-              variant="secondary" 
-              className="text-lg px-8 py-6 h-auto bg-white text-slate-900 hover:bg-slate-100 shadow-xl transform hover:scale-105 transition-all duration-200" 
-              onClick={() => setShowWaitlist(true)}
-            >
-              Get Early Access
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="text-lg px-8 py-6 h-auto border-2 border-white text-white hover:bg-white hover:text-slate-900 transition-all duration-200"
-            >
-              Schedule Demo
-              <Calendar className="ml-2 h-5 w-5" />
-            </Button>
+      {/* Smart Infrastructure Section */}
+      <section id="infrastructure" className="py-24 px-6 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">Smarter by Design</h2>
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto">
+              PoliPort uses intelligent infrastructure to automate quoting, support compliance, and make policy data work for you. From instant pricing to deep customer insights, we help you move faster and smarter.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center group">
+              <div className="mb-6 relative">
+                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-white to-slate-100 rounded-2xl shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300">
+                  <Zap className="h-8 w-8 text-yellow-500 group-hover:scale-110 transition-transform duration-300" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Automated Quoting</h3>
+              <p className="text-slate-600">Instant, accurate quotes powered by intelligent algorithms</p>
+            </div>
+            
+            <div className="text-center group">
+              <div className="mb-6 relative">
+                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-white to-slate-100 rounded-2xl shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300">
+                  <CheckCircle className="h-8 w-8 text-green-500 group-hover:scale-110 transition-transform duration-300" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Compliance Ready</h3>
+              <p className="text-slate-600">Built-in regulatory compliance and audit trails</p>
+            </div>
+            
+            <div className="text-center group">
+              <div className="mb-6 relative">
+                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-white to-slate-100 rounded-2xl shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300">
+                  <TrendingUp className="h-8 w-8 text-blue-500 group-hover:scale-110 transition-transform duration-300" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Deep Insights</h3>
+              <p className="text-slate-600">Comprehensive analytics and customer behavior data</p>
+            </div>
+            
+            <div className="text-center group">
+              <div className="mb-6 relative">
+                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-white to-slate-100 rounded-2xl shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300">
+                  <Clock className="h-8 w-8 text-purple-500 group-hover:scale-110 transition-transform duration-300" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Real-time Processing</h3>
+              <p className="text-slate-600">Instant policy issuance and claims processing</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Partners Section */}
-      <section className="py-24 px-6 bg-gradient-to-br from-slate-50 to-white">
+      <section className="py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">Backed By Industry Leaders</h2>
@@ -416,10 +395,34 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Closing CTA Section */}
+      <section className="py-24 px-6 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full opacity-20"></div>
+        </div>
+        <div className="relative max-w-4xl mx-auto text-center">
+          <h2 className="text-5xl font-bold mb-8">Let's Distribute Better</h2>
+          <p className="text-xl mb-12 opacity-90 max-w-2xl mx-auto">
+            PoliPort unlocks your policy's potential. Reach more customers, embed more easily, and grow without growing your tech stack.
+          </p>
+          <div className="flex justify-center">
+            <Button 
+              size="lg" 
+              variant="secondary" 
+              className="text-lg px-8 py-6 h-auto bg-white text-slate-900 hover:bg-slate-100 shadow-xl transform hover:scale-105 transition-all duration-200" 
+              onClick={() => setShowContact(true)}
+            >
+              Partner with us
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-slate-900 text-white py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="md:col-span-2">
               <div className="flex items-center mb-6">
                 <img 
@@ -433,7 +436,7 @@ const Index = () => {
                 </div>
               </div>
               <p className="text-slate-400 mb-6 max-w-md">
-                Empowering Africa's digital economy with embedded insurance solutions that work seamlessly with your platform.
+                PoliPort unlocks your policy's potential through intelligent distribution infrastructure designed for modern insurers.
               </p>
               <div className="flex space-x-4">
                 <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors cursor-pointer">
@@ -458,16 +461,6 @@ const Index = () => {
                 </div>
               </div>
             </div>
-            
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-              <div className="space-y-3">
-                <a href="#industries" className="block text-slate-400 hover:text-white transition-colors text-sm">Industries</a>
-                <a href="#how-it-works" className="block text-slate-400 hover:text-white transition-colors text-sm">How It Works</a>
-                <a href="#products" className="block text-slate-400 hover:text-white transition-colors text-sm">Products</a>
-                <a href="/admin" className="block text-slate-400 hover:text-white transition-colors text-sm">Admin</a>
-              </div>
-            </div>
           </div>
           
           <div className="pt-8 border-t border-slate-800 text-center text-slate-400">
@@ -476,11 +469,11 @@ const Index = () => {
         </div>
       </footer>
 
-      {/* Waitlist Dialog */}
-      <Dialog open={showWaitlist} onOpenChange={setShowWaitlist}>
+      {/* Contact Dialog */}
+      <Dialog open={showContact} onOpenChange={setShowContact}>
         <DialogContent className="sm:max-w-md bg-white">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Join the Waitlist</DialogTitle>
+            <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Partner with us</DialogTitle>
           </DialogHeader>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -525,12 +518,12 @@ const Index = () => {
               />
               <FormField
                 control={form.control}
-                name="interest"
+                name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-slate-900 font-semibold">Interest</FormLabel>
+                    <FormLabel className="text-slate-900 font-semibold">Message</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="How would you use embedded insurance?" rows={3} className="border-2 focus:border-blue-500 resize-none" {...field} />
+                      <Textarea placeholder="Tell us about your distribution needs and how we can help..." rows={4} className="border-2 focus:border-blue-500 resize-none" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -541,7 +534,7 @@ const Index = () => {
                 className="w-full h-12 font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg" 
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Joining..." : "Join Waitlist"}
+                {isSubmitting ? "Sending..." : "Send Message"}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </form>
