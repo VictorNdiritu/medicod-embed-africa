@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -33,7 +32,6 @@ import {
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email address"),
-  company: z.string().min(1, "Company is required"),
   message: z.string().min(10, "Please provide more details about your needs"),
 });
 
@@ -49,7 +47,6 @@ const Index = () => {
     defaultValues: {
       name: "",
       email: "",
-      company: "",
       message: "",
     },
   });
@@ -59,7 +56,11 @@ const Index = () => {
     try {
       const { error } = await supabase
         .from('contact_submissions')
-        .insert([values]);
+        .insert([{
+          name: values.name,
+          email: values.email,
+          message: values.message
+        }]);
 
       if (error) throw error;
 
@@ -133,8 +134,12 @@ const Index = () => {
             </span>
           </h1>
           
-          <p className="text-xl text-slate-600 mb-12 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
             PoliPort by Medicod Insurance Technologies helps insurers launch their products across digital platforms — fast. Expand your distribution, simplify integration, and unlock new customer touchpoints.
+          </p>
+          
+          <p className="text-lg text-slate-700 mb-12 max-w-4xl mx-auto font-medium">
+            MediCod Insurance Technologies builds AI-powered infrastructure and embeddable APIs to help African insurers and underwriters digitize, launch, and scale products faster.
           </p>
           
           <div className="flex justify-center">
@@ -498,19 +503,6 @@ const Index = () => {
                     <FormLabel className="text-slate-900 font-semibold">Email</FormLabel>
                     <FormControl>
                       <Input type="email" placeholder="your@email.com" className="h-12 border-2 focus:border-blue-500" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="company"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-slate-900 font-semibold">Company</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Your company name" className="h-12 border-2 focus:border-blue-500" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
