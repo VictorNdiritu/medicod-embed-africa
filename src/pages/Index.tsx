@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -104,11 +105,11 @@ const Index = () => {
               </div>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#underwriters" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">For Underwriters</a>
-              <a href="#distribution" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Distribution</a>
-              <a href="#infrastructure" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Infrastructure</a>
+              <a href="#services" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Services</a>
+              <a href="#products" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Products</a>
+              <a href="#about" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">About</a>
               <Button onClick={() => setShowContact(true)} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25 px-6">
-                Partner with us
+                Get Started
               </Button>
             </div>
           </div>
@@ -126,20 +127,20 @@ const Index = () => {
         <div className="relative max-w-6xl mx-auto text-center">
           <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-tight">
             <span className="bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
-              Your policies. One API.
+              Insurance Technology
             </span>
             <br />
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Unlimited reach.
+              for Modern Africa
             </span>
           </h1>
           
           <p className="text-xl text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-            PoliPort by Medicod Insurance Technologies helps insurers launch their products across digital platforms — fast. Expand your distribution, simplify integration, and unlock new customer touchpoints.
+            MediCod Insurance Technologies builds AI-powered infrastructure and embeddable APIs to help African insurers and underwriters digitize, launch, and scale products faster than ever before.
           </p>
           
-          <p className="text-lg text-slate-700 mb-12 max-w-4xl mx-auto font-medium">
-            MediCod Insurance Technologies builds AI-powered infrastructure and embeddable APIs to help African insurers and underwriters digitize, launch, and scale products faster.
+          <p className="text-lg text-slate-700 mb-12 max-w-3xl mx-auto font-medium bg-white/70 p-6 rounded-2xl border border-blue-100">
+            Introducing <span className="font-bold text-blue-600">PoliPort</span> — our flagship API that lets insurers distribute policies across any digital platform without rebuilding their systems.
           </p>
           
           <div className="flex justify-center">
@@ -160,12 +161,12 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">One</div>
-              <div className="text-slate-600">API Connection</div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">15+</div>
+              <div className="text-slate-600">Insurance Partners</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-purple-600 mb-2">99.9%</div>
-              <div className="text-slate-600">Uptime SLA</div>
+              <div className="text-slate-600">API Uptime</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-green-600 mb-2">&lt;2s</div>
@@ -179,16 +180,13 @@ const Index = () => {
         </div>
       </section>
 
-      {/* For Underwriters Section */}
-      <section id="underwriters" className="py-24 px-6 bg-gradient-to-br from-slate-50 to-blue-50">
+      {/* Services Section */}
+      <section id="services" className="py-24 px-6 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">Built for Underwriters</h2>
-            <p className="text-xl text-slate-600 max-w-4xl mx-auto mb-6">
-              With PoliPort, you don't need to rebuild your systems to go digital. Keep control of your products, gain access to real-time distribution data, and open new channels — from apps to partner portals — all through one modern interface.
-            </p>
-            <p className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              You stay in control. We handle the tech.
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">Our Services</h2>
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto">
+              We provide comprehensive insurance technology solutions that help African insurers modernize, scale, and reach new markets through intelligent digital infrastructure.
             </p>
           </div>
           
@@ -196,77 +194,74 @@ const Index = () => {
             <Card className="p-8 text-center hover:shadow-2xl transition-all duration-300 border-0 bg-white/70 backdrop-blur-sm hover:bg-white transform hover:-translate-y-2">
               <CardContent className="p-0">
                 <div className="h-16 w-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg">
-                  <Shield className="h-8 w-8 text-white" />
+                  <Code className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">Full Control</h3>
-                <p className="text-slate-600">Maintain complete oversight of your products and pricing while expanding reach</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">API Development</h3>
+                <p className="text-slate-600">Custom APIs and integration solutions that connect your existing systems to modern digital platforms</p>
               </CardContent>
             </Card>
             
             <Card className="p-8 text-center hover:shadow-2xl transition-all duration-300 border-0 bg-white/70 backdrop-blur-sm hover:bg-white transform hover:-translate-y-2">
               <CardContent className="p-0">
                 <div className="h-16 w-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center shadow-lg">
-                  <BarChart3 className="h-8 w-8 text-white" />
+                  <Zap className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">Real-time Data</h3>
-                <p className="text-slate-600">Access comprehensive distribution analytics and customer insights instantly</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">AI-Powered Automation</h3>
+                <p className="text-slate-600">Intelligent systems for automated underwriting, claims processing, and customer insights</p>
               </CardContent>
             </Card>
             
             <Card className="p-8 text-center hover:shadow-2xl transition-all duration-300 border-0 bg-white/70 backdrop-blur-sm hover:bg-white transform hover:-translate-y-2">
               <CardContent className="p-0">
                 <div className="h-16 w-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center shadow-lg">
-                  <Settings className="h-8 w-8 text-white" />
+                  <Shield className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">No System Rebuild</h3>
-                <p className="text-slate-600">Integrate seamlessly with your existing infrastructure and workflows</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Digital Infrastructure</h3>
+                <p className="text-slate-600">Secure, scalable technology foundation for modern insurance operations</p>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Distribution Layer Section */}
-      <section id="distribution" className="py-24 px-6 bg-white">
+      {/* Featured Product: PoliPort */}
+      <section id="products" className="py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-purple-900 bg-clip-text text-transparent mb-6">Embedded Anywhere</h2>
-            <p className="text-xl text-slate-600 max-w-4xl mx-auto">
-              Whether it's a partner app, a broker portal, or a digital marketplace, PoliPort lets your policies live where your customers already are. One connection — endless opportunities.
+            <div className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              FLAGSHIP PRODUCT
+            </div>
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-purple-900 bg-clip-text text-transparent mb-6">Introducing PoliPort</h2>
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto mb-6">
+              Your policies. One API. Unlimited reach.
+            </p>
+            <p className="text-lg text-slate-700 max-w-3xl mx-auto">
+              PoliPort helps insurers launch their products across digital platforms — fast. Expand your distribution, simplify integration, and unlock new customer touchpoints without rebuilding your systems.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Globe className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">Digital Marketplaces</h3>
-                    <p className="text-slate-600">Reach customers through e-commerce platforms and digital marketplaces</p>
-                  </div>
+              <h3 className="text-3xl font-bold text-slate-900 mb-6">Built for Underwriters</h3>
+              <p className="text-lg text-slate-600 mb-6">
+                With PoliPort, you don't need to rebuild your systems to go digital. Keep control of your products, gain access to real-time distribution data, and open new channels — from apps to partner portals — all through one modern interface.
+              </p>
+              <p className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                You stay in control. We handle the tech.
+              </p>
+              
+              <div className="space-y-4 mt-8">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <span className="text-slate-700">Full control over products and pricing</span>
                 </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Users className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">Partner Applications</h3>
-                    <p className="text-slate-600">Embed directly into partner apps and platforms your customers use daily</p>
-                  </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <span className="text-slate-700">Real-time distribution analytics</span>
                 </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Target className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">Broker Portals</h3>
-                    <p className="text-slate-600">Enable brokers with seamless access to your products and pricing</p>
-                  </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <span className="text-slate-700">No system rebuild required</span>
                 </div>
               </div>
             </div>
@@ -298,16 +293,43 @@ const Index = () => {
               </div>
             </div>
           </div>
+
+          {/* Distribution Features */}
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="h-16 w-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg">
+                <Globe className="h-8 w-8 text-white" />
+              </div>
+              <h4 className="text-xl font-bold text-slate-900 mb-3">Embedded Anywhere</h4>
+              <p className="text-slate-600">Digital marketplaces, partner apps, broker portals — PoliPort lets your policies live where customers already are</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="h-16 w-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
+                <Zap className="h-8 w-8 text-white" />
+              </div>
+              <h4 className="text-xl font-bold text-slate-900 mb-3">Smarter by Design</h4>
+              <p className="text-slate-600">Intelligent infrastructure automates quoting, supports compliance, and provides deep customer insights</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="h-16 w-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center shadow-lg">
+                <Target className="h-8 w-8 text-white" />
+              </div>
+              <h4 className="text-xl font-bold text-slate-900 mb-3">One Connection</h4>
+              <p className="text-slate-600">Single API connection opens endless distribution opportunities without growing your tech stack</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Smart Infrastructure Section */}
-      <section id="infrastructure" className="py-24 px-6 bg-gradient-to-br from-blue-50 to-purple-50">
+      {/* About Section */}
+      <section id="about" className="py-24 px-6 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">Smarter by Design</h2>
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">About MediCod</h2>
             <p className="text-xl text-slate-600 max-w-4xl mx-auto">
-              PoliPort uses intelligent infrastructure to automate quoting, support compliance, and make policy data work for you. From instant pricing to deep customer insights, we help you move faster and smarter.
+              We're building the future of insurance technology in Africa, empowering insurers with intelligent solutions that drive growth and innovation.
             </p>
           </div>
           
@@ -315,41 +337,41 @@ const Index = () => {
             <div className="text-center group">
               <div className="mb-6 relative">
                 <div className="w-16 h-16 mx-auto bg-gradient-to-br from-white to-slate-100 rounded-2xl shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300">
-                  <Zap className="h-8 w-8 text-yellow-500 group-hover:scale-110 transition-transform duration-300" />
+                  <Layers className="h-8 w-8 text-blue-500 group-hover:scale-110 transition-transform duration-300" />
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Automated Quoting</h3>
-              <p className="text-slate-600">Instant, accurate quotes powered by intelligent algorithms</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Innovation First</h3>
+              <p className="text-slate-600">Cutting-edge technology solutions designed for the African insurance market</p>
             </div>
             
             <div className="text-center group">
               <div className="mb-6 relative">
                 <div className="w-16 h-16 mx-auto bg-gradient-to-br from-white to-slate-100 rounded-2xl shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300">
-                  <CheckCircle className="h-8 w-8 text-green-500 group-hover:scale-110 transition-transform duration-300" />
+                  <Users className="h-8 w-8 text-green-500 group-hover:scale-110 transition-transform duration-300" />
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Compliance Ready</h3>
-              <p className="text-slate-600">Built-in regulatory compliance and audit trails</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Partnership Focused</h3>
+              <p className="text-slate-600">Building long-term relationships with insurers across the continent</p>
             </div>
             
             <div className="text-center group">
               <div className="mb-6 relative">
                 <div className="w-16 h-16 mx-auto bg-gradient-to-br from-white to-slate-100 rounded-2xl shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300">
-                  <TrendingUp className="h-8 w-8 text-blue-500 group-hover:scale-110 transition-transform duration-300" />
+                  <Shield className="h-8 w-8 text-purple-500 group-hover:scale-110 transition-transform duration-300" />
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Deep Insights</h3>
-              <p className="text-slate-600">Comprehensive analytics and customer behavior data</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Security & Compliance</h3>
+              <p className="text-slate-600">Enterprise-grade security with built-in regulatory compliance</p>
             </div>
             
             <div className="text-center group">
               <div className="mb-6 relative">
                 <div className="w-16 h-16 mx-auto bg-gradient-to-br from-white to-slate-100 rounded-2xl shadow-lg flex items-center justify-center group-hover:shadow-xl transition-all duration-300">
-                  <Clock className="h-8 w-8 text-purple-500 group-hover:scale-110 transition-transform duration-300" />
+                  <TrendingUp className="h-8 w-8 text-orange-500 group-hover:scale-110 transition-transform duration-300" />
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Real-time Processing</h3>
-              <p className="text-slate-600">Instant policy issuance and claims processing</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Proven Results</h3>
+              <p className="text-slate-600">Track record of helping insurers scale and modernize operations</p>
             </div>
           </div>
         </div>
@@ -359,9 +381,9 @@ const Index = () => {
       <section className="py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">Backed By Industry Leaders</h2>
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">Trusted by Industry Leaders</h2>
             <p className="text-lg text-slate-600">
-              Supported by Kenya's largest insurer and Microsoft's startup program
+              Backed by Kenya's largest insurer and Microsoft's startup program
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-12 max-w-3xl mx-auto">
@@ -406,9 +428,9 @@ const Index = () => {
           <div className="absolute top-0 left-0 w-full h-full opacity-20"></div>
         </div>
         <div className="relative max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl font-bold mb-8">Let's Distribute Better</h2>
+          <h2 className="text-5xl font-bold mb-8">Ready to Transform Your Insurance Business?</h2>
           <p className="text-xl mb-12 opacity-90 max-w-2xl mx-auto">
-            PoliPort unlocks your policy's potential. Reach more customers, embed more easily, and grow without growing your tech stack.
+            Join forward-thinking insurers who trust MediCod Insurance Technologies to power their digital transformation. Let's build the future of insurance together.
           </p>
           <div className="flex justify-center">
             <Button 
@@ -441,7 +463,7 @@ const Index = () => {
                 </div>
               </div>
               <p className="text-slate-400 mb-6 max-w-md">
-                PoliPort unlocks your policy's potential through intelligent distribution infrastructure designed for modern insurers.
+                Building the future of insurance technology in Africa with AI-powered solutions and modern APIs that help insurers scale and innovate.
               </p>
               <div className="flex space-x-4">
                 <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors cursor-pointer">
@@ -478,7 +500,7 @@ const Index = () => {
       <Dialog open={showContact} onOpenChange={setShowContact}>
         <DialogContent className="sm:max-w-md bg-white">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Partner with us</DialogTitle>
+            <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Get Started with MediCod</DialogTitle>
           </DialogHeader>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -515,7 +537,7 @@ const Index = () => {
                   <FormItem>
                     <FormLabel className="text-slate-900 font-semibold">Message</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Tell us about your distribution needs and how we can help..." rows={4} className="border-2 focus:border-blue-500 resize-none" {...field} />
+                      <Textarea placeholder="Tell us about your insurance technology needs and how we can help..." rows={4} className="border-2 focus:border-blue-500 resize-none" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -526,7 +548,7 @@ const Index = () => {
                 className="w-full h-12 font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg" 
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? "Sending..." : "Get Started"}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </form>
