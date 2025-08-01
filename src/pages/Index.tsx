@@ -386,11 +386,11 @@ const Index = () => {
               Backed by Kenya's largest insurer and Microsoft's startup program
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-12 max-w-3xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="flex flex-col items-center text-center group">
               <div className="w-32 h-32 bg-white rounded-3xl shadow-xl flex items-center justify-center mb-6 border border-slate-200 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
                 <img 
-                  src="/lovable-uploads/5c3e9f4f-b62e-47de-8cfe-9829b64272e0.png" 
+                  src="/lovable-uploads/65d018f9-7d2b-4fc9-8f1a-a86ac3e9b9a4.png" 
                   alt="Britam Logo" 
                   className="h-20 w-auto"
                 />
@@ -416,6 +416,22 @@ const Index = () => {
               <div className="flex items-center mt-2">
                 <TrendingUp className="h-4 w-4 text-blue-500 mr-1" />
                 <span className="text-sm text-blue-600 font-medium">Growth Partner</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center text-center group">
+              <div className="w-32 h-32 bg-white rounded-3xl shadow-xl flex items-center justify-center mb-6 border border-slate-200 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
+                <img 
+                  src="/lovable-uploads/39b28f72-3e13-45bf-8a2e-5d73cbc597da.png" 
+                  alt="Nvidia Inception Program Logo" 
+                  className="h-16 w-auto"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">Nvidia Inception</h3>
+              <p className="text-slate-600 font-medium">AI Development Partner</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
+                <span className="text-sm text-green-600 font-medium">Innovation Partner</span>
               </div>
             </div>
           </div>
