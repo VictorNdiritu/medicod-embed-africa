@@ -9,8 +9,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/hooks/use-toast";
 import { 
   Shield, 
   Zap, 
@@ -41,7 +39,6 @@ type ContactForm = z.infer<typeof contactSchema>;
 const Index = () => {
   const [showContact, setShowContact] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
 
   const form = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
@@ -54,31 +51,31 @@ const Index = () => {
 
   const onSubmit = async (values: ContactForm) => {
     setIsSubmitting(true);
+    
+    const formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('email', values.email);
+    formData.append('message', values.message);
+
     try {
-      const { error } = await supabase
-        .from('contact_submissions')
-        .insert([{
-          name: values.name,
-          email: values.email,
-          message: values.message
-        }]);
-
-      if (error) throw error;
-
-      toast({
-        title: "Message sent!",
-        description: "We'll get back to you within 24 hours.",
+      const response = await fetch('https://formspree.io/f/xdkdknpn', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
       });
-      
-      form.reset();
-      setShowContact(false);
+
+      if (response.ok) {
+        alert('Thank you! Your message has been sent. We\'ll get back to you within 24 hours.');
+        form.reset();
+        setShowContact(false);
+      } else {
+        throw new Error('Form submission failed');
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
+      alert('Something went wrong. Please try again or contact us directly.');
     } finally {
       setIsSubmitting(false);
     }
