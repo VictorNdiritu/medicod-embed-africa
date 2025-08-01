@@ -422,7 +422,7 @@ const Index = () => {
             <div className="flex flex-col items-center text-center group">
               <div className="w-32 h-32 bg-white rounded-3xl shadow-xl flex items-center justify-center mb-6 border border-slate-200 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
                 <img 
-                  src="/lovable-uploads/39b28f72-3e13-45bf-8a2e-5d73cbc597da.png" 
+                  src="/lovable-uploads/ef07cba1-a75d-41d1-a8b1-832cb8580774.png" 
                   alt="Nvidia Inception Program Logo" 
                   className="h-16 w-auto"
                 />
