@@ -101,7 +101,7 @@ const Index = () => {
                 <p className="text-sm text-slate-600 font-medium">Insurance Technologies</p>
               </div>
             </div>
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="flex items-center space-x-8">
               <a href="#services" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Services</a>
               <a href="#products" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Products</a>
               <a href="#about" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">About</a>
