@@ -94,7 +94,7 @@ const Waitlist = () => {
           <CardHeader>
             <CardTitle className="text-2xl">What is Medicod Insurance Technologies?</CardTitle>
             <CardDescription className="text-lg">
-              We help platforms offer insurance to their users through our APIs. Underwriters and brokers can relax—we handle the infrastructure, digital onboarding, claims automation, and more.
+              We make it easy for platforms to offer insurance directly within their product. Our APIs handle the heavy lifting with digital onboarding, policy management, claims automation, and secure infrastructure. For underwriters and brokers, it’s plug and play distribution without the tech headache.
             </CardDescription>
           </CardHeader>
           <CardContent>
