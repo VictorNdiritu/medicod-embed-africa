@@ -1,14 +1,7 @@
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { Link } from "react-router-dom";
 import { 
   Shield, 
   Zap, 
@@ -28,58 +21,7 @@ import {
   BarChart3
 } from "lucide-react";
 
-const contactSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  message: z.string().min(10, "Please provide more details about your needs"),
-});
-
-type ContactForm = z.infer<typeof contactSchema>;
-
 const Index = () => {
-  const [showContact, setShowContact] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const form = useForm<ContactForm>({
-    resolver: zodResolver(contactSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      message: "",
-    },
-  });
-
-  const onSubmit = async (values: ContactForm) => {
-    setIsSubmitting(true);
-    
-    const formData = new FormData();
-    formData.append('name', values.name);
-    formData.append('email', values.email);
-    formData.append('message', values.message);
-
-    try {
-      const response = await fetch('https://formspree.io/f/xdkdknpn', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        alert('Thank you! Your message has been sent. We\'ll get back to you within 24 hours.');
-        form.reset();
-        setShowContact(false);
-      } else {
-        throw new Error('Form submission failed');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Something went wrong. Please try again or contact us directly.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -105,8 +47,8 @@ const Index = () => {
               <a href="#services" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Services</a>
               <a href="#products" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Products</a>
               <a href="#about" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">About</a>
-              <Button onClick={() => setShowContact(true)} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25 px-6">
-                Get Started
+              <Button asChild className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25 px-6">
+                <Link to="/waitlist">Join the Waitlist</Link>
               </Button>
             </div>
           </div>
@@ -143,11 +85,13 @@ const Index = () => {
           <div className="flex justify-center">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-6 h-auto shadow-2xl shadow-blue-500/25 transform hover:scale-105 transition-all duration-200" 
-              onClick={() => setShowContact(true)}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-6 h-auto shadow-2xl shadow-blue-500/25 transform hover:scale-105 transition-all duration-200"
+              asChild
             >
-              Partner with us
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <Link to="/waitlist">
+                Join the Waitlist
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
             </Button>
           </div>
         </div>
@@ -449,11 +393,13 @@ const Index = () => {
             <Button 
               size="lg" 
               variant="secondary" 
-              className="text-lg px-8 py-6 h-auto bg-white text-slate-900 hover:bg-slate-100 shadow-xl transform hover:scale-105 transition-all duration-200" 
-              onClick={() => setShowContact(true)}
+              className="text-lg px-8 py-6 h-auto bg-white text-slate-900 hover:bg-slate-100 shadow-xl transform hover:scale-105 transition-all duration-200"
+              asChild
             >
-              Partner with us
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <Link to="/waitlist">
+                Join the Waitlist
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
             </Button>
           </div>
         </div>
@@ -509,65 +455,6 @@ const Index = () => {
         </div>
       </footer>
 
-      {/* Contact Dialog */}
-      <Dialog open={showContact} onOpenChange={setShowContact}>
-        <DialogContent className="sm:max-w-md bg-white">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Get Started with MediCod</DialogTitle>
-          </DialogHeader>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-slate-900 font-semibold">Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Your full name" className="h-12 border-2 focus:border-blue-500" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-slate-900 font-semibold">Email</FormLabel>
-                    <FormControl>
-                      <Input type="email" placeholder="your@email.com" className="h-12 border-2 focus:border-blue-500" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-slate-900 font-semibold">Message</FormLabel>
-                    <FormControl>
-                      <Textarea placeholder="Tell us about your insurance technology needs and how we can help..." rows={4} className="border-2 focus:border-blue-500 resize-none" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button 
-                type="submit" 
-                className="w-full h-12 font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg" 
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Sending..." : "Get Started"}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </form>
-          </Form>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
