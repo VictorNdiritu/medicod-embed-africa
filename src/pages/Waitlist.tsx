@@ -10,6 +10,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 const waitlistSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -77,14 +79,43 @@ const Waitlist = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      {/* Navigation */}
+      <nav className="bg-white/80 backdrop-blur-xl border-b border-slate-200/50 sticky top-0 z-50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between h-20">
+            <Link to="/" className="flex items-center">
+              <div className="relative">
+                <img 
+                  src="/lovable-uploads/a34ed8e2-8a17-4e05-a3bb-c6c7b0b821f5.png" 
+                  alt="MediCod Logo" 
+                  className="h-12 w-12 rounded-xl shadow-lg ring-2 ring-blue-100"
+                />
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+              </div>
+              <div className="ml-4">
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">MediCod</span>
+                <p className="text-sm text-slate-600 font-medium">Insurance Technologies</p>
+              </div>
+            </Link>
+            <Link 
+              to="/"
+              className="flex items-center space-x-2 text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              <span>Back to Home</span>
+            </Link>
+          </div>
+        </div>
+      </nav>
+
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Join the Waitlist
           </h1>
-          <p className="text-xl text-muted-foreground mb-8">
+          <p className="text-xl text-slate-600 mb-8">
             Be among the first to access Medicod's embedded insurance platform
           </p>
         </div>

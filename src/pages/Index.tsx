@@ -47,6 +47,7 @@ const Index = () => {
               <a href="#services" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Services</a>
               <a href="#products" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Products</a>
               <a href="#about" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">About</a>
+              <Link to="/waitlist" className="text-slate-700 hover:text-blue-600 transition-all duration-200 font-medium">Waitlist</Link>
               <Button asChild className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25 px-6">
                 <Link to="/waitlist">Join the Waitlist</Link>
               </Button>
